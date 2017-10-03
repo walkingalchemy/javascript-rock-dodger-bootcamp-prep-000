@@ -29,8 +29,12 @@ function checkCollision(rock) {
     const rockRightEdge = rockLeftEdge + 20;
     if (//false
       (rockLeftEdge <= dodgerLeftEdge && rockRightEdge >= dodgerLeftEdge) ||
+<<<<<<< HEAD
       (rockLeftEdge <= dodgerRightEdge && rockRightEdge >= dodgerRightEdge) ||
       (rockLeftEdge > dodgerLeftEdge && rockRightEdge < dodgerRightEdge)
+=======
+      (rockLeftEdge <= dodgerRightEdge && rockRightEdge >= dodgerRightEdge)
+>>>>>>> ba18a0e86ac9ff1bb4143f237e3e15ed90313c50
     ) {
       return true
     }
@@ -46,7 +50,11 @@ function createRock(x) {
   // Hmmm, why would we have used `var` here?
   //var top = 0
 
+<<<<<<< HEAD
   //rock.style.top = `${top}px`
+=======
+  rock.style.top = `${top}px`
+>>>>>>> ba18a0e86ac9ff1bb4143f237e3e15ed90313c50
 
   /**
    * Now that we have a rock, we'll need to append
@@ -59,17 +67,28 @@ function createRock(x) {
    * seems like a good pace.)
    */
   function moveRock() {
+<<<<<<< HEAD
     var top = positionToInteger(rock.style.top)
     function step() {
       /**
        * If a rock collides with the DODGER,
        * we should call endGame()
        */
+=======
+    /**
+     * If a rock collides with the DODGER,
+     * we should call endGame()
+     */
+
+    var top = positionToInteger(rock.style.top)
+    function step() {
+>>>>>>> ba18a0e86ac9ff1bb4143f237e3e15ed90313c50
       if (checkCollision(rock)) {
         endGame()
       }
       top += 2
       rock.style.top = `${top}px`
+<<<<<<< HEAD
       /**
        * Otherwise, if the rock hasn't reached the bottom of
        * the GAME, we want to move it again.
@@ -87,6 +106,38 @@ function createRock(x) {
     }
       window.requestAnimationFrame(step)
   }
+=======
+
+      if (top < GAME_HEIGHT) {
+        window.requestAnimationFrame(step)
+      } else {
+        rock.remove()
+      }
+    }
+    if (top < GAME_WIDTH) {
+      window.requestAnimationFrame(step)
+    }
+  }
+//    rock.style.top  = `${top}px`
+//  }
+
+//  if (top < GAME_HEIGHT) {
+//    window.requestAnimationFrame(moveRock)
+//  }
+    //window.requestAnimationFrame(moveRock)
+
+    /**
+     * Otherwise, if the rock hasn't reached the bottom of
+     * the GAME, we want to move it again.
+     */
+
+    /**
+     * But if the rock *has* reached the bottom of the GAME,
+     * we should remove the rock from the DOM
+     */
+
+
+>>>>>>> ba18a0e86ac9ff1bb4143f237e3e15ed90313c50
   // We should kick of the animation of the rock around here
   moveRock()
   // Add the rock to ROCKS so that we can remove all rocks
@@ -106,11 +157,18 @@ function createRock(x) {
  */
 function endGame() {
   clearInterval(gameInterval)
+<<<<<<< HEAD
   for (let i = ROCKS.length - 1; i >= 0; i--) {
     ROCKS[i].remove()
   }
   ROCKS.length = 0
   window.removeEventListener('keydown', moveDodger)
+=======
+  for (let i =0; i < ROCKS.length; i++) {
+    ROCKS.pop(i)
+  }
+  document.removeEventListener('keydown', moveDodger)
+>>>>>>> ba18a0e86ac9ff1bb4143f237e3e15ed90313c50
   alert("You Lose!")
 }
 
@@ -185,7 +243,7 @@ function positionToInteger(p) {
 }
 
 function start() {
-  window.addEventListener('keydown', moveDodger)
+  document.addEventListener('keydown', moveDodger)
 
   START.style.display = 'none'
 
